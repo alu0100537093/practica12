@@ -13,4 +13,45 @@ class Naranjo
 		@comienzo_produccion = empezar_producir          #A que edad empieza a producir naranjas
 		@frecuencia_crecimiento = frecuencia_crecimiento #Cada cuantos segundos crece el arbol (en el hilo de ejecucion)
 	end
+
+	def esta_muerto
+		if(@edad >= TIEMPO_DE_VIDA)
+			return true
+		else
+			return false
+		end
+	end
+
+	def produce
+		if(@edad >= @comienzo_produccion)
+			return true
+		else
+			return false
+		end
+	end
+
+	def uno_mas
+		sleep(@frecuencia_crecimiento)
+		puts "El naranjo ha cumplido #{@edad +1} años"
+		if(!esta_muerto)
+			@edad = @edad + 1
+			@altura = @altura + @aumento_altura
+			if(produce)
+				@n_naranjas = @n_naranjas + INCREMENTO_NARANJAS*(@edad - @comienzo_produccion +1)
+			end
+		end
+	end
+
+	def recolectar_una
+		if(!esta_muerto)
+			if(n_naranjas > 0)
+				@n_naranjas = @n_naranjas -1
+				return "La naranja estaba delicosa"
+			else
+				return "Una pena... no hay naranjas."
+			end
+		else
+			return "Ya no se puede hacer nada más, el naranjo ha muerto"
+		end
+	end
 end
