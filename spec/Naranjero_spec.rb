@@ -39,5 +39,31 @@ describe Naranjo do
 		expect(@naranjero2.frecuencia_crecimiento).to eq(3)
 	end
 	
+	it "Se comprueba si el arbol sigue vivo o no" do
+		expect(@naranjero.esta_muerto).to eq(false)
+		expect(@naranjero2.esta_muerto).to eq(false)
+		@naranjero.edad = 70
+		expect(@naranjero.esta_muerto).to eq(true)
+		@naranjero.edad = 0
+	end
+
+	it "Se comprueba que el naranjero produce naranjas" do
+		expect(@naranjero.produce).to eq(false)
+		expect(@naranjero2.produce).to eq(false)
+	end
+
+	it "Se comprueba que se incrementa correctamente la edad de un naranjo " do
+		5.times do
+			@naranjero.uno_mas
+		end
+		expect(@naranjero.altura).to eq(1.0)
+		expect(@naranjero.n_naranjas).to eq(5)
+		expect(@naranjero.edad).to eq(5)
+	end
+
+	it "Se debe devolver una cadena indicando si se ha recogido una naranja o no" do
+		expect(@naranjero.recolectar_una).to eq("La naranja estaba delicosa")
+		expect(@naranjero2.recolectar_una).to eq("Una pena... no hay naranjas.")
+	end
 	
 end
