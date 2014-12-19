@@ -67,3 +67,29 @@ describe Naranjo do
 	end
 	
 end
+
+
+describe Recolector do
+	before :all do
+		@naranjo = Naranjo.new(0.2,5,3)
+		@recolector = Recolector.new(2,@naranjo)
+	end
+
+	it"El recolector tiene una frecuencia de recogida" do
+		expect(@recolector.frecuencia_de_recogida).to eq(2)
+	end
+
+	it "El recolector debe poseer un naranjero" do
+		expect(@recolector.naranjero).to eq(@naranjo)
+	end
+	
+	it "El recolector puede recolectar una naranja" do
+		expect(@recolector.recolectar).to eq("Una pena... no hay naranjas.")
+	end
+=begin
+	it "Simulaciooooooon" do
+		puts "Empezando sumulación!!"
+		@recolector.simular_recoleccion
+	end
+=end
+end
